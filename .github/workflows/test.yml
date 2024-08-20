@@ -27,4 +27,4 @@ jobs:
     - name: Run TestRigor Tests
       env:
         TESTRIGOR_TOKEN: ${{ secrets.TESTRIGOR_TOKEN }}
-      run: testrigor run --suite-name Login --token $TESTRIGOR_TOKEN
+        run: testrigor test-suite run Login --token $TESTRIGOR_TOKEN
