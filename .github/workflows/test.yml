@@ -1,0 +1,30 @@
+name: TestRigor Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-testrigor-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install TestRigor CLI
+      run: npm install -g testrigor
+
+    - name: Run TestRigor Tests
+      env:
+        TESTRIGOR_TOKEN: ${{ secrets.TESTRIGOR_TOKEN }}
+      run: testrigor run --suite-name="Login"
